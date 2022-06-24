@@ -14,9 +14,9 @@
 # ./odoo-install
 ################################################################################
 
-OE_USER="jumami"
-OE_HOME="/odoo"
-OE_HOME_EXT="/odoo/${OE_USER}.online"
+OE_USER="odoo"
+OE_HOME="/$OE_USER"
+OE_HOME_EXT="/odoo/jumami.online"
 # The default port where this Odoo instance will run under (provided you use the command -c in the terminal)
 # Set to true if you want to install it, false if you don't need it or have it already installed.
 INSTALL_WKHTMLTOPDF="True"
@@ -33,7 +33,7 @@ INSTALL_NGINX="True"
 OE_SUPERADMIN="admin"
 # Set to "True" to generate a random password, "False" to use the variable in OE_SUPERADMIN
 GENERATE_RANDOM_PASSWORD="True"
-OE_CONFIG="${OE_USER}-server"
+OE_CONFIG="jumami-server"
 # Set the website name
 WEBSITE_NAME="jumami.online"
 # Set the default Odoo longpolling port (you still have to use -c /etc/odoo-server.conf for example to use this.)
@@ -109,8 +109,8 @@ sudo adduser --system --quiet --shell=/bin/bash --home=$OE_HOME --gecos 'ODOO' -
 sudo adduser $OE_USER sudo
 
 echo -e "\n---- Create Log directory ----"
-sudo mkdir /var/log/$OE_USER
-sudo chown $OE_USER:$OE_USER /var/log/$OE_USER
+sudo mkdir /var/log/jumami
+sudo chown $OE_USER:$OE_USER /var/log/jumami
 
 #--------------------------------------------------
 # Install ODOO
@@ -151,7 +151,7 @@ sudo su $OE_USER -c "mkdir $OE_HOME/custom-jumami/addons"
 echo -e "\n---- Setting permissions on home folder ----"
 sudo chown -R $OE_USER:$OE_USER $OE_HOME/*
 
-echo -e "* Create server config file"
+echo -e "* Create server file"
 
 
 sudo touch /etc/${OE_CONFIG}.conf
@@ -373,7 +373,7 @@ echo "Done! The Odoo server is up and running. Specifications:"
 echo "Port: $OE_PORT"
 echo "User service: $OE_USER"
 echo "Configuraton file location: /etc/${OE_CONFIG}.conf"
-echo "Logfile location: /var/log/$OE_USER"
+echo "Logfile location: /var/log/jumami"
 echo "User PostgreSQL: $OE_USER"
 echo "Code location: $OE_USER"
 echo "Addons folder: $OE_USER/$OE_CONFIG/addons/"
